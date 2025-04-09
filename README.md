@@ -1,5 +1,14 @@
 # Whisper Translator App
 
+# Whisper Translator
+
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Release](https://img.shields.io/github/v/release/TheDeceived-Be/Whisper-Translator?style=flat)
+![Issues](https://img.shields.io/github/issues/TheDeceived-Be/Whisper-Translator)
+![Stars](https://img.shields.io/github/stars/TheDeceived-Be/Whisper-Translator?style=social)
+
+
 **Whisper Translator** is a GUI app that uses **OpenAI Whisper** to transcribe video/audio files and the **DeepL API** to translate them into another language, saving subtitles as `.srt` files.
 
 ---
