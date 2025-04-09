@@ -2,12 +2,13 @@
 
 # Whisper Translator
 
-![Python](https://img.shields.io/badge/Python-3.10-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Release](https://img.shields.io/github/v/release/TheDeceived-Be/Whisper-Translator?style=flat)
-![Issues](https://img.shields.io/github/issues/TheDeceived-Be/Whisper-Translator)
-![Stars](https://img.shields.io/github/stars/TheDeceived-Be/Whisper-Translator?style=social)
-![Download](https://img.shields.io/badge/Download-Whisper--Translator-blue.svg)](https://github.com/TheDeceived-Be/Whisper-Translator/releases/latest)
+[!Python](https://img.shields.io/badge/Python-3.10-blue)
+[!License](https://img.shields.io/badge/License-MIT-yellow.svg)
+[!Release](https://img.shields.io/github/v/release/TheDeceived-Be/Whisper-Translator?style=flat)
+[!Issues](https://img.shields.io/github/issues/TheDeceived-Be/Whisper-Translator)
+[!Stars](https://img.shields.io/github/stars/TheDeceived-Be/Whisper-Translator?style=social)
+[![Download](https://img.shields.io/badge/Download-Whisper--Translator-blue?logo=github)](https://github.com/TheDeceived-Be/Whisper-Translator/releases/latest)
+
 
 
 
