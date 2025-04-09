@@ -66,6 +66,8 @@
 
 
 🌐 Supported Languages
+
+
 English
 
 Spanish
