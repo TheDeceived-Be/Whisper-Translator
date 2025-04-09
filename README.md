@@ -7,6 +7,8 @@
 ![Release](https://img.shields.io/github/v/release/TheDeceived-Be/Whisper-Translator?style=flat)
 ![Issues](https://img.shields.io/github/issues/TheDeceived-Be/Whisper-Translator)
 ![Stars](https://img.shields.io/github/stars/TheDeceived-Be/Whisper-Translator?style=social)
+![Download](https://img.shields.io/badge/Download-Whisper--Translator-blue.svg)](https://github.com/TheDeceived-Be/Whisper-Translator/releases/latest)
+
 
 
 **Whisper Translator** is a GUI app that uses **OpenAI Whisper** to transcribe video/audio files and the **DeepL API** to translate them into another language, saving subtitles as `.srt` files.
@@ -52,6 +54,36 @@
 3. Enter your **DeepL API key** (you can get it [here](https://www.deepl.com/pro-api)).
 4. Choose your target translation language.
 5. Click **Start** — and the app will create a `.srt` subtitle file!
+
+---
+
+
+🌐 Supported Languages
+English
+
+Spanish
+
+French
+
+German
+
+Japanese
+
+Chinese
+
+Korean
+
+Portuguese
+
+Italian
+
+Dutch
+
+Russian
+
+(and many more!)
+
+(Depends on DeepL API and Whisper model support.)
 
 ---
 
