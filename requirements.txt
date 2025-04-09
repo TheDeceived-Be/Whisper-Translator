@@ -1,0 +1,5 @@
+tk
+whisper
+openai-whisper
+torch
+deepl
