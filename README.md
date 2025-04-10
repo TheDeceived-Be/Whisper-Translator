@@ -1,8 +1,5 @@
 # Whisper Translator App
 
-# Whisper Translator
-
-# Whisper Translator App
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
@@ -12,7 +9,7 @@
 [![Download](https://img.shields.io/badge/Download-Whisper--Translator-blue?logo=github)](https://github.com/TheDeceived-Be/Whisper-Translator/releases/latest)
 
 ## Whisper Translator
-...
+---
 
 
 
