@@ -3,7 +3,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue)](https://github.com/TheDeceived-Be/Whisper-Translator/releases)
+[![Release](https://img.shields.io/badge/Release-v1.1.0-blue)](https://github.com/TheDeceived-Be/Whisper-Translator/releases)
 [![Issues](https://img.shields.io/badge/Issues-0%20open-brightgreen)](https://github.com/TheDeceived-Be/Whisper-Translator/issues)
 [![Stars](https://img.shields.io/github/stars/TheDeceived-Be/Whisper-Translator?style=social)](https://github.com/TheDeceived-Be/Whisper-Translator/stargazers)
 [![Download](https://img.shields.io/badge/Download-Whisper--Translator-blue?logo=github)](https://github.com/TheDeceived-Be/Whisper-Translator/releases/latest)

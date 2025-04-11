@@ -115,15 +115,26 @@ class TranslatorApp:
         self.folder_entry.insert(0, self.output_folder)
 
     def toggle_theme(self):
+        style = ttk.Style()
+    
         if self.dark_mode.get():
-            root.configure(bg="#2e2e2e")
-            style = ttk.Style()
-            style.theme_use('clam')
-            style.configure(".", background="#2e2e2e", foreground="white", fieldbackground="#2e2e2e")
+           root.configure(bg="#2e2e2e")
+           style.theme_use('clam')
+           style.configure(".", 
+               background="#2e2e2e", 
+               foreground="white", 
+               fieldbackground="#2e2e2e")
+           style.configure("TLabel", background="#2e2e2e", foreground="white")
+           style.configure("TButton", background="#444444", foreground="white")
+           style.configure("TEntry", fieldbackground="#3e3e3e", foreground="white")
         else:
             root.configure(bg="SystemButtonFace")
-            style = ttk.Style()
             style.theme_use('default')
+            style.configure(".", background="SystemButtonFace", foreground="black")
+            style.configure("TLabel", background="SystemButtonFace", foreground="black")
+            style.configure("TButton", background="SystemButtonFace", foreground="black")
+            style.configure("TEntry", fieldbackground="white", foreground="black")
+
 
     def start(self):
         threading.Thread(target=self.run_process, daemon=True).start()
@@ -184,8 +195,22 @@ class TranslatorApp:
             output_path = os.path.join(self.output_folder, output_name)
 
             with open(output_path, "w", encoding="utf-8") as f:
-                for i, line in enumerate(translated_sentences, start=1):
-                    f.write(f"{i}\n00:00:00,000 --> 00:00:05,000\n{line}\n\n")
+                for idx, sentence in enumerate(translated_sentences):
+                    start_time = idx * 5
+                    end_time = (idx + 1) * 5
+
+                    def format_srt_timestamp(seconds):
+                        hours = int(seconds // 3600)
+                        minutes = int((seconds % 3600) // 60)
+                        secs = int(seconds % 60)
+                        millis = int((seconds - int(seconds)) * 1000)
+                        return f"{hours:02}:{minutes:02}:{secs:02},{millis:03}"
+
+                    start_timestamp = format_srt_timestamp(start_time)
+                    end_timestamp = format_srt_timestamp(end_time)
+
+                    f.write(f"{idx+1}\n{start_timestamp} --> {end_timestamp}\n{sentence}\n\n")
+
 
             self.progress["value"] = 100
             self.update_status(f"Done! Saved: {output_path}")
