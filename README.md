@@ -111,3 +111,12 @@ Pull requests are welcome! Feel free to open an issue if you have ideas for impr
 
 This project is licensed under the [MIT License](LICENSE).
 
+
+---
+
+## 📜 Changelog
+| Version | Date         | Changes                                                                 |
+|:-------:|:------------:|------------------------------------------------------------------------|
+| v1.1    | 2025-04-11   | - Fixed subtitle timestamp formatting<br>- Improved dark mode readability<br>- General stability improvements |
+| v1.0    | 2025-04-10   | - Initial release of Whisper Translator<br>- Transcribe and translate video files<br>- DeepL Free API integration<br>- Multithreaded GUI with progress bar<br>- Export subtitles in `.srt` format |
+
