@@ -19,7 +19,7 @@ logging.basicConfig(filename=log_file, level=logging.DEBUG, format="%(asctime)s 
 
 # === Constants ===
 MAX_RETRIES = 3
-WHISPER_MODELS = ["tiny", "small", "medium", "large"]
+WHISPER_MODELS = ["tiny", "base", "small", "medium", "large"]
 DEEPL_LANGUAGES = {
     "English": "EN", "German": "DE", "French": "FR", "Spanish": "ES", "Italian": "IT",
     "Dutch": "NL", "Polish": "PL", "Portuguese": "PT-PT", "Russian": "RU", "Japanese": "JA",
@@ -56,6 +56,8 @@ class TranslatorApp:
         self.output_folder = ""
         self.api_key = ""
         self.translator = None
+        self.cancel_requested = False
+
 
         self.setup_gui()
 
@@ -159,35 +161,58 @@ class TranslatorApp:
             # Step 1: Transcribe
             self.update_status("Transcribing...")
             model = whisper.load_model(model_name)
-            result = model.transcribe(self.audio_path, language="en")
-            text = result["text"]
+            result = model.transcribe(self.audio_path, language="en", word_timestamps=True)
+            segments = result["segments"]
+            # DEBUG: Log the raw Whisper segments with timing
+            for i, seg in enumerate(segments):
+                logging.debug(f"Segment {i+1}: {seg['start']} --> {seg['end']} | Text: {seg['text']}")
+
             self.progress["value"] = 40
 
-            # Step 2: Split Text
-            sentences = split_text_for_subtitles(text)
             self.update_status("Translating...")
             self.progress["value"] = 50
 
-            # Step 3: Translate sentences
-            translated_sentences = []
-            for idx, sentence in enumerate(sentences):
-                translated = translate_with_retries(self.translator, sentence, target_language)
-                if translated is None:
-                    user_choice = messagebox.askretrycancel("Translation Failed", "Translation failed 3 times. Retry?")
-                    if user_choice:
-                        translated = translate_with_retries(self.translator, sentence, target_language)
-                    else:
-                        skip = messagebox.askyesno("Skip Sentence?", "Skip this sentence and continue?")
-                        if skip:
-                            translated = sentence  # Keep original
-                        else:
-                            self.update_status("Cancelled by user.")
-                            self.start_button.config(state=tk.NORMAL)
-                            return
-                translated_sentences.append(translated)
 
-                self.progress["value"] = 50 + 50 * (idx+1) / len(sentences)
+            # Step 3: Translate sentences
+            translated_segments = []
+
+            for idx, segment in enumerate(segments):
+                if self.cancel_requested:
+                    self.update_status("Cancelled by user.")
+                    self.start_button.config(state=tk.NORMAL)
+                    self.cancel_button.config(state=tk.DISABLED)
+                    return
+
+                sentence = segment["text"]
+                if not sentence.strip():
+                    continue  # 🔁 Skip empty or silent segments
+                start_time = segment["start"]
+                end_time = segment["end"]
+
+                translated = translate_with_retries(self.translator, sentence, target_language)
+
+                if translated is None:
+                   user_choice = messagebox.askretrycancel("Translation failed 3 times. Retry?")
+                   title="Translation failed 3 times",
+                   message="Do you want to retry translating this sentence?"
+                   if user_choice:
+                      translated = translate_with_retries(self.translator, sentence, target_language)
+    
+                if translated is None:  # After retrying, still failed?
+                   skip = messagebox.askyesno("Skip Sentence?", "Skip this sentence and continue?")
+                   if skip:
+                       translated = sentence  # Keep original
+                   else:
+                       self.update_status("Cancelled by user.")
+                       self.start_button.config(state=tk.NORMAL)
+                       return
+
+
+                translated_segments.append((start_time, end_time, translated))
+
+                self.progress["value"] = 50 + 50 * (idx+1) / len(segments)
                 self.root.update_idletasks()
+
 
             # Step 4: Save to .srt
             self.update_status("Saving file...")
@@ -195,9 +220,7 @@ class TranslatorApp:
             output_path = os.path.join(self.output_folder, output_name)
 
             with open(output_path, "w", encoding="utf-8") as f:
-                for idx, sentence in enumerate(translated_sentences):
-                    start_time = idx * 5
-                    end_time = (idx + 1) * 5
+                for idx, (start_time, end_time, sentence) in enumerate(translated_segments):
 
                     def format_srt_timestamp(seconds):
                         hours = int(seconds // 3600)
