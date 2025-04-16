@@ -7,6 +7,8 @@
 [![Issues](https://img.shields.io/badge/Issues-0%20open-brightgreen)](https://github.com/TheDeceived-Be/Whisper-Translator/issues)
 [![Stars](https://img.shields.io/github/stars/TheDeceived-Be/Whisper-Translator?style=social)](https://github.com/TheDeceived-Be/Whisper-Translator/stargazers)
 [![Download](https://img.shields.io/badge/Download-Whisper--Translator-blue?logo=github)](https://github.com/TheDeceived-Be/Whisper-Translator/releases/latest)
+[![Support me on Patreon](https://img.shields.io/badge/Support--me--on-Patreon-orange?style=for-the-badge&logo=patreon)](https://www.patreon.com/The_Deceived)
+
 
 ## Whisper Translator
 ---
@@ -105,7 +107,20 @@ Russian
 
 Pull requests are welcome! Feel free to open an issue if you have ideas for improvements.
 
+
+
 ---
+
+## 💖 Support This Project
+
+If you find **Whisper Translator** useful and want to support its development, consider becoming a patron!
+
+Your support helps me continue maintaining and improving the app. Even a small contribution makes a big difference.
+
+[![Support me on Patreon](https://img.shields.io/badge/Support--me--on-Patreon-orange?style=for-the-badge&logo=patreon)](https://www.patreon.com/The_Deceived)
+
+---
+
 
 ## 📜 License
 
@@ -117,6 +132,7 @@ This project is licensed under the [MIT License](LICENSE).
 ## 📜 Changelog
 | Version | Date         | Changes                                                                 |
 |:-------:|:------------:|------------------------------------------------------------------------|
+| v1.2    | 2025-04-16   | - Added support for importing multiple files at once<br>- Added "Cancel" button |
 | v1.1    | 2025-04-11   | - Fixed subtitle timestamp formatting<br>- Improved dark mode readability<br>- General stability improvements |
 | v1.0    | 2025-04-10   | - Initial release of Whisper Translator<br>- Transcribe and translate video files<br>- DeepL Free API integration<br>- Multithreaded GUI with progress bar<br>- Export subtitles in `.srt` format |
 
